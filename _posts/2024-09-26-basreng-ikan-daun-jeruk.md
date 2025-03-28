@@ -2,8 +2,8 @@
 layout: post
 date: "2024-09-26"
 title: "Basreng Ikan Daun Jeruk"
-img_hires: "basreng-daging-pouch.jpg"
-img_lowres: "basreng-daging-pouch.jpg"
+img_hires: "basreng-ikan-pouch.jpg"
+img_lowres: "basreng-ikan-pouch.jpg"
 price: 20000
 halalID: ""
 pirtID: ""
