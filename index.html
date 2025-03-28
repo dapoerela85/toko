@@ -3,9 +3,9 @@ layout: default
 ---
 <!-- Posts -->
 <div class="container mt-5">
-<div class="row row-cols-1 row-cols-md-2 g-4"></div>
+<div class="row"></div>
 {% for post in paginator.posts %}
-<div class="col-md-6 col-lg-6">
+<div class="col-6 col-lg-3 mb-3">
   <div class="card">
     <img src="{{ site.url }}/assets/img/products/lowres/{{ post.img_lowres }}" class="card-img-top" alt="{{ post.title }}">
     <div class="card-body">
