@@ -1,16 +1,19 @@
 ---
 layout: default
 ---
+<div class="row row-cols-1 row-cols-md-2 g-4"></div>
 {% for post in paginator.posts %}
-  <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
-  <p class="author">
-    <span class="date">{{ post.date }}</span>
-  </p>
-  <div class="content">
-    {{ post.content }}
+<div class="col-md-6 col-lg-6">
+  <div class="card">
+    <img src="{{site.url}}/assets/products/lowres/{{ post.img_lowres }}" class="card-img-top" alt="{{ post.title }}">
+    <div class="card-body">
+      <a href="{{ post.url }}"></a><h5 class="card-title">{{ post.title }}</h5></div>a>
+      <p class="card-text">{{ post.price }}</p>
+    </div>
   </div>
+</div>
 {% endfor %}
-
+</div>
 <!-- Pagination links -->
 <div class="pagination">
   {% if paginator.previous_page %}
