@@ -5,10 +5,10 @@ layout: default
 {% for post in paginator.posts %}
 <div class="col-md-6 col-lg-6">
   <div class="card">
-    <img src="{{site.url}}/assets/products/lowres/{{ post.img_lowres }}" class="card-img-top" alt="{{ post.title }}">
+    <img src="{{ site.url }}/assets/img/products/lowres/{{ post.img_lowres }}" class="card-img-top" alt="{{ post.title }}">
     <div class="card-body">
       <a href="{{ post.url }}"><h5 class="card-title">{{ post.title }}</h5></a>
-      <p class="card-text">{{ post.price }}</p>
+      <p class="card-text">Rp {{ post.price }}</p>
     </div>
   </div>
 </div>
