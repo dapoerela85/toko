@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.getElementById("search");
-    const searchStatus = document.getElementById("searchStatus");
     const urlParams = new URLSearchParams(window.location.search);
     const searchQuery = urlParams.get("q") || "";
     const sortBtn = document.getElementById("sortBtn");
@@ -10,25 +9,23 @@ document.addEventListener("DOMContentLoaded", function () {
     const gridViewBtn = document.getElementById("gridViewBtn");
     const listViewBtn = document.getElementById("listViewBtn");
     const categoryFilter = urlParams.get("category");
-    
+
     let sortAscending = localStorage.getItem("sortOrder") !== "desc";
     let viewMode = localStorage.getItem("viewMode") || "grid";
+
     let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     let currentPage = 1;
     const itemsPerPage = 3;
 
-    // ✅ Set search input value on page load
-    searchInput.value = searchQuery;
-    filterProducts();
-
     function updateMetaTitle() {
-        document.title = categoryFilter ? `Products in ${categoryFilter} - Dapoer Ela 85` : "Dapoer Ela 85";
+        document.title = categoryFilter
+            ? `Products in ${categoryFilter} - Dapoer Ela 85`
+            : "Dapoer Ela 85";
     }
 
     function filterProducts() {
-        let searchQuery = searchInput.value.trim().toLowerCase();
+        let searchQuery = searchInput.value.toLowerCase();
         let products = document.querySelectorAll(".product");
-        let resultCount = 0;
 
         products.forEach(product => {
             let name = product.getAttribute("data-name").toLowerCase();
@@ -37,40 +34,23 @@ document.addEventListener("DOMContentLoaded", function () {
             let matchesSearch = name.includes(searchQuery);
             let matchesCategory = categoryFilter ? category === categoryFilter : true;
 
-            if (matchesSearch && matchesCategory) {
-                product.style.display = "block";
-                resultCount++;
-            } else {
-                product.style.display = "none";
-            }
+            product.style.display = matchesSearch && matchesCategory ? "block" : "none";
         });
-
-        // ✅ Update URL dynamically
-        let url = new URL(window.location);
-        if (searchQuery) {
-            url.searchParams.set("q", searchQuery);
-        } else {
-            url.searchParams.delete("q");
-        }
-        window.history.replaceState({}, "", url);
-
-        // ✅ Display search result status
-        searchStatus.innerHTML = searchQuery
-            ? `You searched for "<b>${searchQuery}</b>" and found <b>${resultCount}</b> results.`
-            : "Showing all products.";
 
         updateMetaTitle();
     }
 
     function sortProducts() {
-        let productsArray = Array.from(document.querySelectorAll(".card.h-100"));
+        let productsArray = Array.from(document.querySelectorAll(".product"));
+
         productsArray.sort((a, b) => {
             let priceA = parseInt(a.getAttribute("data-price"));
             let priceB = parseInt(b.getAttribute("data-price"));
             return sortAscending ? priceA - priceB : priceB - priceA;
         });
 
-        productsArray.forEach(product => productList.appendChild(product.parentElement));
+        productList.innerHTML = "";
+        productsArray.forEach(product => productList.appendChild(product));
 
         sortBtn.innerHTML = sortAscending
             ? '<i class="bi bi-sort-up"></i> Harga Tertinggi'
@@ -81,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function toggleFavorite(slug, name, price, image) {
         let index = favorites.findIndex(item => item.slug === slug);
-        
+
         if (index === -1) {
             favorites.push({ slug, name, price, image });
         } else {
@@ -113,6 +93,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function renderFavorites() {
+        if (!favoritesList) return;
+
         favoritesList.innerHTML = "";
         let searchQuery = document.getElementById("favoriteSearch").value.toLowerCase();
 
@@ -125,11 +107,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         document.getElementById("favoritesPagination").style.display = "flex";
 
-        let filteredFavorites = favorites.filter(product => 
+        let filteredFavorites = favorites.filter(product =>
             product.name.toLowerCase().includes(searchQuery)
         );
 
-        // ✅ Calculate total price only for visible favorites
         let totalPrice = filteredFavorites.reduce((sum, product) => sum + product.price, 0);
         document.getElementById("totalFavoritesPrice").textContent = totalPrice.toLocaleString();
 
@@ -139,11 +120,6 @@ document.addEventListener("DOMContentLoaded", function () {
         let start = (currentPage - 1) * itemsPerPage;
         let end = start + itemsPerPage;
         let paginatedFavorites = filteredFavorites.slice(start, end);
-
-        if (paginatedFavorites.length === 0 && currentPage > 1) {
-            currentPage--;
-            return renderFavorites();
-        }
 
         paginatedFavorites.forEach(product => {
             let li = document.createElement("li");
@@ -190,7 +166,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     document.getElementById("nextPageBtn").addEventListener("click", function () {
-        if (currentPage * itemsPerPage < favorites.length) {
+        if (currentPage < Math.ceil(favorites.length / itemsPerPage)) {
             currentPage++;
             renderFavorites();
         }
@@ -210,19 +186,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     searchInput.addEventListener("input", filterProducts);
-
-    gridViewBtn.addEventListener("click", function () {
-        viewMode = "grid";
-        localStorage.setItem("viewMode", viewMode);
-        updateView();
-    });
-
-    listViewBtn.addEventListener("click", function () {
-        viewMode = "list";
-        localStorage.setItem("viewMode", viewMode);
-        updateView();
-    });
-
     sortProducts();
     renderFavorites();
     updateFavoriteIcons();
