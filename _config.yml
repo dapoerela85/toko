@@ -1,14 +1,14 @@
 title               : "Dapoer Ela 85"
 description         : ""
-baseurl             : "/toko/"
+baseurl             : "/toko"
 keywords            : ""
-url                 : "https://dapoerela85.github.io/toko/"
+url                 : "https://dapoerela85.github.io/toko"
 locale              : "id-ID"
 github_username     : dapoerela85
 permalink           : pretty
 markdown            : kramdown
-paginate            : 4
-paginate_path       : "/toko/:num/"
+paginate            : 6
+paginate_path       : "/:num/"
 
 include:
   - _pages
