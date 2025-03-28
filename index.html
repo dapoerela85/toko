@@ -1,37 +1,21 @@
 ---
 layout: default
 ---
-{% include search-sortprice-category-controls.html %} 
-<div class="container mt-3 card card-body bg-transparent">
-<div id="productList" class="row grid-view">
-{% for post in paginator.posts %}
-<div class="col-6 col-lg-3 mb-3">
-  <div class="card h-100"
-  data-name="{{ post.title }}"
-  data-price="{{ post.price }}"
-  data-category="{{ post.categories }}" 
-  data-slug="{{ post.slug }}"
-  data-image="{{ site.url }}/assets/img/products/lowres/{{ post.img_lowres }}">
-    <img src="{{ site.url }}/assets/img/products/lowres/{{ post.img_lowres }}" class="card-img-top" alt="{{ post.title }}">
-    <div class="card-body">
-      <a href="{{ post.url }}"><h5 class="card-title">{{ post.title }}</h5></a>
-      <p class="card-text">Rp {{ post.price }}</p>
-    </div>
-    <div class="card-body">
-      <div class="d-flex justify-content-between">
-      <button class="btn btn-primary favorite-btn"
-       data-name="{{ post.title }}"
-       data-slug="{{ post.slug }}"
-       data-price="{{ post.price }}"
-       data-image="{{ site.url }}/assets/img/products/lowres/{{ post.img_lowres }}"><i class="bi bi-heart"></i></button>
-       <a href="{{ post.url }}" class="btn btn-outline-primary">Detail</a>
-       </div>
-    </div>
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Home</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="pills-favorites-tab" data-bs-toggle="pill" data-bs-target="#pills-favorites" type="button" role="tab" aria-controls="pills-favorites" aria-selected="false">Favorites</button>
+  </li>
+</ul>
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+  {% include search-sortprice-category-controls.html %} 
+  {% include product-lists.html %} 
+  {% include pagination.html %} 
   </div>
-</div>
-{% endfor %}
-</div>
-</div>
-<!-- Pagination -->
-{% include pagination.html %} 
-{% include favorites.html %} 
+  <div class="tab-pane fade" id="pills-favorites" role="tabpanel" aria-labelledby="pills-favorites-tab" tabindex="0">
+    {% include favorites.html %}
+  </div>
+</div> 
