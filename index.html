@@ -19,12 +19,14 @@ layout: default
       <p class="card-text">Rp {{ post.price }}</p>
     </div>
     <div class="card-body">
+      <div class="d-flex justify-content-between"></div>
       <button class="btn btn-primary favorite-btn"
        data-name="{{ post.title }}"
        data-slug="{{ post.slug }}"
        data-price="{{ post.price }}"
        data-image="{{ site.url }}/assets/img/products/lowres/{{ post.img_lowres }}"><i class="bi bi-heart"></i></button>
        <a href="{{ post.url }}" class="btn btn-outline-primary">Detail</a>
+       </div>
     </div>
   </div>
 </div>
