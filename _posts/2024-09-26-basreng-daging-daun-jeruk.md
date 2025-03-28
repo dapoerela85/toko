@@ -13,7 +13,7 @@ storage: "2 Bulan"
 categories: ["basreng"]
 variants: ["Pedas", "Original"]
 buy:
-  whatsapp:  "https://wa.me/p/8644073649045494/6285172211985"
+  whatsapp: "https://wa.me/p/8644073649045494/6285172211985"
   shopee: "https://shopee.co.id/product/19907932/27124660599/"
   gofood: "https://gofood.link/a/PccieRo"
   shopeefood: ""
