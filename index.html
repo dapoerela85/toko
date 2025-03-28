@@ -4,7 +4,7 @@ layout: default
 <!-- Posts -->
 <div class="container mt-5">
 {% include search-sortprice-category-controls.html %} 
-<div class="row">
+<div id="productList" class="row grid-view">
 {% for post in paginator.posts %}
 <div class="col-6 col-lg-3 mb-3">
   <div class="card h-100"
