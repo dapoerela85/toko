@@ -1,0 +1,21 @@
+<div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Favorites</h5>
+    </div>
+    <!-- Search Input for Favorites -->
+    <input id="favoriteSearch" type="text" class="form-control mb-2" placeholder="Cari produk di favorites...">
+    <ul id="favoritesList" class="list-group list-group-flush">
+    </ul>
+    <!-- Pagination Favorites -->
+    <div id="favoritesPagination" class="d-flex justify-content-between">
+      <button id="prevPageBtn" class="btn btn-secondary btn-sm" disabled>Previous</button>
+      <span id="currentPageIndicator">Page 1</span>
+      <button id="nextPageBtn" class="btn btn-secondary btn-sm">Next</button>
+    </div>
+    <div class="card-body">
+     <div class="d-flex justify-content-between">
+      <p><strong>Total Price:</strong> IDR <span id="totalFavoritesPrice">0</span></p>
+      <button id="clearFavoritesBtn" class="btn btn-danger"><i class="bi bi-trash"></i> Clear Favorites</button>
+     </div>
+    </div>
+</div>
