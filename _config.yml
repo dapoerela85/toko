@@ -24,7 +24,7 @@ defaults:
       type: posts
     values:
       layout: post
-      permalink: /:title/
+      permalink: /product/:title/
   - scope:
       path: "_pages"
       type: "pages"
