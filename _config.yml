@@ -1,0 +1,19 @@
+title               : "Dapoer Ela 85"
+description         : ""
+baseurl             : "/toko"
+keywords            : ""
+url                 : "https://dapoerela85.github.io/toko"
+locale              : "id-ID"
+github_username     : dapoerela85
+permalink           : pretty
+markdown            : kramdown
+paginate            : 6
+paginate_path       : "/store/:num/"
+
+include:
+  - _pages
+
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-sitemap
