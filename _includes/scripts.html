@@ -11,8 +11,6 @@
         const clearFavoritesBtn = document.getElementById("clearFavoritesBtn");
         const gridViewBtn = document.getElementById("gridViewBtn");
         const listViewBtn = document.getElementById("listViewBtn");
-    
-        const urlParams = new URLSearchParams(window.location.search);
         const categoryFilter = urlParams.get("category");
     
         let sortAscending = localStorage.getItem("sortOrder") !== "desc";
@@ -26,50 +24,22 @@
             document.title = categoryFilter ? `Products in ${categoryFilter} - My Store` : "My Store";
         }
     
-        searchInput.value = searchQuery; // Prefill input if URL has query
-        filterProducts(); // Apply search filter on page load
-    
-    function updateSearchQuery() {
-            let query = searchInput.value.trim();
-            let url = new URL(window.location);
-            
-            if (query) {
-                url.searchParams.set("q", query);
-            } else {
-                url.searchParams.delete("q");
-            }
-            
-            window.history.replaceState({}, "", url);
-    }  
-    
     function filterProducts() {
-            let searchQuery = searchInput.value.trim().toLowerCase();
-            let products = document.querySelectorAll(".card"); // Ensure selecting correct elements
-            let resultCount = 0;
-    
-            products.forEach(product => {
-                let name = product.getAttribute("data-name").toLowerCase();
-                let matchesSearch = name.includes(searchQuery);
-    
-                if (matchesSearch) {
-                    product.style.display = "block";
-                    resultCount++;
-                } else {
-                    product.style.display = "none";
-                }
-            });
-    
-    // 🔹 Update Search Result Status
-            searchStatus.innerHTML = searchQuery
-                ? `You searched for "<b>${searchQuery}</b>" and found <b>${resultCount}</b> results.`
-                : "Showing all products.";
-    
-            // 🔹 Update Meta Title
-            document.title = searchQuery
-                ? `Search results for "${searchQuery}" - My Store`
-                : "My Store";
-        }
-    });
+        let searchQuery = searchInput.value.toLowerCase();
+        let products = document.querySelectorAll(".product");
+
+        products.forEach(product => {
+            let name = product.getAttribute("data-name").toLowerCase();
+            let category = product.getAttribute("data-category");
+
+            let matchesSearch = name.includes(searchQuery);
+            let matchesCategory = categoryFilter ? category === categoryFilter : true;
+
+            product.style.display = matchesSearch && matchesCategory ? "block" : "none";
+        });
+
+        updateMetaTitle();
+    }
     
     function sortProducts() {
         let productsArray = Array.from(document.querySelectorAll(".card.h-100"));
