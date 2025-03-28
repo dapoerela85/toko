@@ -13,9 +13,9 @@ storage: "2 Bulan"
 categories: ["basreng"]
 variants: ["Pedas", "Original"]
 buy:
-  whatsapp: ""
-  shopee: ""
-  gofood: ""
+  whatsapp: "https://wa.me/p/8337016673008834/6285172211985"
+  shopee: "https://shopee.co.id/product/19907932/28874656057/"
+  gofood: "https://gofood.link/a/PccnSGq"
   shopeefood: ""
 desc: "Basreng ikan daun jeruk kemasan standing pouch yang renyah dan gurih."
 ---
