@@ -20,7 +20,7 @@
         const itemsPerPage = 3;
     
         function updateMetaTitle() {
-            document.title = categoryFilter ? `Products in ${categoryFilter} - My Store` : "My Store";
+            document.title = categoryFilter ? `Products in ${categoryFilter} - {{ site.title }}` : "{{ site.title }}";
         }
     
     function filterProducts() {
