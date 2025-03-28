@@ -2,7 +2,10 @@
 layout: default
 ---
 <header>
-  <h1>{{ site.title }}</h1>
+  <h1 class="text-uppercase">
+    {{ site.title }}
+    <span class="badge text-bg-secondary">{{ page.title }}</span>
+  </h1>
 </header>
 <ul class="nav nav nav-underline mb-3" id="pills-tab" role="tablist">
   <li class="nav-item" role="presentation">
