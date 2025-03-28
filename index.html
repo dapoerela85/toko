@@ -3,14 +3,27 @@ layout: default
 ---
 <!-- Posts -->
 <div class="container mt-5">
+{% include search-sortprice-category-controls.html %} 
 <div class="row">
 {% for post in paginator.posts %}
 <div class="col-6 col-lg-3 mb-3">
-  <div class="card h-100">
+  <div class="card h-100"
+  data-name="{{ post.title }}"
+  data-price="{{ post.price }}"
+  data-category="{{ post.categories }}" 
+  data-slug="{{ post.slug }}"
+  data-image="{{ site.url }}/assets/img/products/lowres/{{ post.img_lowres }}">
     <img src="{{ site.url }}/assets/img/products/lowres/{{ post.img_lowres }}" class="card-img-top" alt="{{ post.title }}">
     <div class="card-body">
       <a href="{{ post.url }}"><h5 class="card-title">{{ post.title }}</h5></a>
       <p class="card-text">Rp {{ post.price }}</p>
+    </div>
+    <div class="card-body">
+      <button class="btn btn-primary favorite-btn"
+       data-name="{{ post.title }}"
+       data-slug="{{ post.slug }}"
+       data-price="{{ post.price }}"
+       data-image="{{ site.url }}/assets/img/products/lowres/{{ post.img_lowres }}"><i class="bi bi-heart"></i></button>
     </div>
   </div>
 </div>
