@@ -2,7 +2,6 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const searchInput = document.getElementById("search");
-        const searchStatus = document.getElementById("searchStatus");
         const urlParams = new URLSearchParams(window.location.search);
         const searchQuery = urlParams.get("q") || "";
         const sortBtn = document.getElementById("sortBtn");

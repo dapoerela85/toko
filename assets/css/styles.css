@@ -4,3 +4,22 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
 } 
+  /* Grid View */
+  .grid-view {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+/* List View */
+.list-view {
+    display: block;
+}
+
+.list-view .product {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.list-view img {
+    width: 100px;
+}
