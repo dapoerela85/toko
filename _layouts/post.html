@@ -1,0 +1,11 @@
+---
+layout: default
+---
+<img class="img-fluid" src="{{ site.url }}/assets/img/products/{{ page.hires }}" alt="{{ page.title }}"/>
+<h3>{{ page.title }}</h3>
+{% if page.desc %}
+ <div class="card card-body mb-3e">
+  <b>{{ page.desc }}</b>
+ </div>
+ {% else %}
+{% endif %} 
